@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>IP Info</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+  <div class="w-full max-w-md bg-white rounded-lg shadow-md p-6">
+    <h1 class="text-2xl font-bold text-center mb-4">IP Info Finder</h1>
+    <div id="alert-container" class="mb-4"></div>
+    <div class="flex space-x-2 mb-4">
+      <input id="ipInput" type="text" class="flex-1 p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter an IP (e.g., 8.8.8.8)">
+      <button id="searchBtn" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Search</button>
+    </div>
+    <div class="overflow-x-auto">
+      <table id="resultsTable" class="min-w-full table-auto hidden">
+        <thead>
+          <tr class="bg-gray-200">
+            <th class="px-4 py-2">IP</th>
+            <th class="px-4 py-2">Org</th>
+            <th class="px-4 py-2">Country</th>
+            <th class="px-4 py-2">City</th>
+            <th class="px-4 py-2">Action</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+  <script src="arquivo.js"></script>
+</body>
+</html>
