@@ -1,0 +1,31 @@
+@apiexercicio1=http://localhost:3000/util
+
+### GET Uppercase
+GET {{apiexercicio1}}/text/uppercase 
+
+### GET Lowercase
+GET {{apiexercicio1}}/text/lowercase 
+
+### POST Uppercase
+POST {{apiexercicio1}}/text/uppercase
+Content-Type: application/json
+
+{
+    "input": "Lorem Ipsum"
+}
+
+### POST Lowercase
+POST {{apiexercicio1}}/text/lowercase 
+Content-Type: application/json
+
+{
+    "input": "Lorem Ipsum"
+} 
+
+
+
+### GET Minimum
+GET {{apiexercicio1}}/number/minimum?input=8,4,15
+
+### GET Maximum 
+GET {{apiexercicio1}}/number/maximum?input=89,33,12
