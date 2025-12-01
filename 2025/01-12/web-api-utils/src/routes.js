@@ -2,6 +2,14 @@ import { Router } from 'express';
 
 const router = Router();
 
+router.get('/uppercase', (req, res) => {
+    return res.send("Uppercase"); 
+}); 
+
+router.get('/lowercase', (req, res) => {
+    return res.send("Lowercase"); 
+}); 
+
 router.post('/text/:action', (req, res) => {
     const texto = req.body.input;
     const action = req.params.action;
@@ -20,7 +28,6 @@ router.post('/text/:action', (req, res) => {
 });
 
 router.get('/number/:action', (req, res) => {
-    console.log(req.query.input); 
     const input = req.query.input;
     const action = req.params.action;
     const vetor = input.split(',').map(Number);
