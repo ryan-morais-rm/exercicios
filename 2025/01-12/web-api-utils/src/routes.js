@@ -1,58 +1,45 @@
-import { json, Router } from 'express';
+import { Router } from 'express';
 
-const router = Router(); 
+const router = Router();
 
-router.get('/text/lowercase', (req, res) => {
-    return res.send('Lowercase');
-}); 
+router.post('/text/:action', (req, res) => {
+    const texto = req.body.input;
+    const action = req.params.action;
+    if (action == 'lowercase') {
+        return res.json({
+            action: "lowercase",
+            input: texto, 
+            output: texto.toLowerCase()
+        }); 
+    }
+    return res.json({
+        action: "uppercase",
+        input: texto,
+        output: texto.toUpperCase()
+    })
+});
 
-router.get('/text/uppercase', (req, res) => {
-    return res.send("Uppercase");
-}); 
-
-router.post('/text/lowercase', (req, res) => {
-    const texto =  req.body.input; 
-    const formatado = texto.toLowerCase(); 
-    return json(res.send({
-        "action": "lowercase", 
-        "input": texto, 
-        "output": formatado 
-    }))
-}); 
-
-router.post('/text/uppercase', (req, res) => {
-    const texto = req.body.input; 
-    const formatado = texto.toUpperCase();  
-    return json(res.send({
-        "action": "uppercase", 
-        "input": texto, 
-        "output": formatado
-    }))
-}); 
-
-router.get('/number/minimum', (req, res) => {
+router.get('/number/:action', (req, res) => {
+    console.log(req.query.input); 
     const input = req.query.input;
-    const vetor = input.split(','); 
-    vetor.sort((a, b) => a - b); 
-    let min_number = vetor[0]; 
-    return json(res.send({
-        "action": "minimum",
-        "input": vetor, 
-        "output": min_number 
-    }))
-}); 
+    const action = req.params.action;
+    const vetor = input.split(',').map(Number);
+    
+    vetor.sort((a, b) => a - b);
 
-router.get('/number/maximum', (req, res) => {
-    const input = req.query.input;
-    const vetor = input.split(',');
-    vetor.sort((a, b) => a - b);  
-    let max_number = vetor[2]; 
-    return json(res.send({
-        "action": "Maximum", 
-        "input": vetor, 
-        "output": max_number 
-    }))
-}); 
+    let resultado;
 
+    if (action === 'minimum') {
+        resultado = vetor[0]; 
+    } else if (action === 'maximum') {
+        resultado = vetor[vetor.length - 1]; 
+    }
 
-export default router; 
+    return res.json({
+        action: action,
+        input: vetor,
+        output: resultado
+    });
+});
+
+export default router;
